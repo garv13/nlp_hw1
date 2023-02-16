@@ -419,9 +419,11 @@ void *TrainModelThread(void *id) {
     for (c = 0; c < layer1_size; c++) neu1e[c] = 0;
     next_random = next_random * (unsigned long long)25214903917 + 11;
     b = next_random % window;
+    // This code trains the Continuous Bag of Words (CBOW) architecture
     if (cbow) {  //train the cbow architecture
       // in -> hidden
-      cw = 0;
+     cw = 0; // Counter for number of words in the context window
+        // Iterate over words in context window and add their embeddings to the neu1 vector
       for (a = b; a < window * 2 + 1 - b; a++) if (a != window) {
         c = sentence_position - window + a;
         if (c < 0) continue;
@@ -431,25 +433,32 @@ void *TrainModelThread(void *id) {
         for (c = 0; c < layer1_size; c++) neu1[c] += syn0[c + last_word * layer1_size];
         cw++;
       }
-      if (cw) {
-        for (c = 0; c < layer1_size; c++) neu1[c] /= cw;
-        if (hs) for (d = 0; d < vocab[word].codelen; d++) {
+      if (cw) { // if there are words in the context window
+        for (c = 0; c < layer1_size; c++) neu1[c] /= cw;// average the context embeddings
+        if (hs) { // hierarchical softmax
+            // Iterate over each binary code for the target word and update the syn1 weights 
+          for (d = 0; d < vocab[word].codelen; d++) {
           f = 0;
           l2 = vocab[word].point[d] * layer1_size;
+          // Calculate the dot product between neu1 and the weight vector of the current output 
           // Propagate hidden -> output
           for (c = 0; c < layer1_size; c++) f += neu1[c] * syn1[c + l2];
+          // Apply the sigmoid function to the dot product and calculate the error
           if (f <= -MAX_EXP) continue;
           else if (f >= MAX_EXP) continue;
           else f = expTable[(int)((f + MAX_EXP) * (EXP_TABLE_SIZE / MAX_EXP / 2))];
           // 'g' is the gradient multiplied by the learning rate
+          // Calculate the gradient of the error with respect to the output node
           g = (1 - vocab[word].code[d] - f) * alpha;
           // Propagate errors output -> hidden
-          for (c = 0; c < layer1_size; c++) neu1e[c] += g * syn1[c + l2];
+          for (c = 0; c < layer1_size; c++) neu1e[c] += g * syn1[c + l2];// Propagate the error to the hidden layer
           // Learn weights hidden -> output
-          for (c = 0; c < layer1_size; c++) syn1[c + l2] += g * neu1[c];
+          for (c = 0; c < layer1_size; c++) syn1[c + l2] += g * neu1[c];// Update the weight vector of the current output node
         }
         // NEGATIVE SAMPLING
+        // If negative sampling is used, update the weights of the hidden layer to negative samples connections
         if (negative > 0) for (d = 0; d < negative + 1; d++) {
+          // Iterate over negative samples and update syn1neg weights
           if (d == 0) {
             target = word;
             label = 1;
