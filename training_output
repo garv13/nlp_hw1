@@ -1,0 +1,51 @@
+Enter word or sentence (EXIT to break): dog
+
+Word: dog  Position in vocabulary: 2264
+
+                                              Word       Cosine distance
+------------------------------------------------------------------------
+                                               cat              0.839318
+                                              dogs              0.821417
+                                             puppy              0.784896
+                                             pooch              0.716060
+                                               pet              0.714605
+                                          labrador              0.704446
+                                         dachshund              0.697846
+                                          Doberman              0.689057
+                                            canine              0.687172
+                                           terrier              0.686038
+Enter word or sentence (EXIT to break): bat
+
+Word: bat  Position in vocabulary: 6528
+
+                                              Word       Cosine distance
+------------------------------------------------------------------------
+                                          fielders              0.685424
+                                            stumps              0.671184
+                                              bats              0.669140
+                                           batsman              0.661573
+                                             pitch              0.658719
+                                           batting              0.654792
+                                       left-handed              0.645959
+                                             balls              0.644213
+                                              ball              0.634846
+                                           bowling              0.634109
+
+Enter word or sentence (EXIT to break): lol
+
+Word: lol  Position in vocabulary: 51602
+
+                                              Word       Cosine distance
+------------------------------------------------------------------------
+                                               LOL              0.720595
+                                                 u              0.712163
+                                             thats              0.712110
+                                              LMAO              0.709643
+                                            ......              0.704125
+                                               luv              0.702604
+                                             .....              0.698954
+                                           .......              0.694701
+                                              ....              0.693141
+                                              haha              0.689274
+                                               cuz              0.689207
+
