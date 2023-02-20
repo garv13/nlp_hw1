@@ -49,3 +49,53 @@ Word: lol  Position in vocabulary: 51602
                                               haha              0.689274
                                                cuz              0.689207
 
+
+Enter word or sentence (EXIT to break): cat
+
+Word: cat  Position in vocabulary: 6179
+
+                                              Word       Cosine distance
+------------------------------------------------------------------------
+                                               dog              0.839318
+                                              cats              0.771166
+                                            feline              0.758627
+                                            kitten              0.753874
+                                             puppy              0.750849
+                                             tabby              0.731630
+                                           raccoon              0.725628
+                                            rabbit              0.717856
+                                               rat              0.710838
+                                              mutt              0.697828
+Enter word or sentence (EXIT to break): like
+
+Word: like  Position in vocabulary: 103
+
+                                              Word       Cosine distance
+------------------------------------------------------------------------
+                                             weird              0.644554
+                                             crazy              0.624639
+                                              Like              0.618685
+                                           besides              0.607810
+                                             silly              0.596870
+                                              nice              0.585180
+                                            unlike              0.583635
+                                             scary              0.577520
+                                               odd              0.571074
+                                        everywhere              0.569510
+Enter word or sentence (EXIT to break): she
+
+Word: she  Position in vocabulary: 80
+
+                                              Word       Cosine distance
+------------------------------------------------------------------------
+                                               She              0.879276
+                                               her              0.775171
+                                                he              0.742820
+                                           herself              0.717257
+                                              hers              0.701695
+                                            mother              0.661188
+                                           husband              0.645670
+                                             woman              0.637142
+                                                He              0.626837
+                                          daughter              0.590191
+
